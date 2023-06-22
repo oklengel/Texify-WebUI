@@ -1,0 +1,128 @@
+<h1>LaTeX Project Generator</h1>
+
+<form (submit)="generateLaTeXProject()">
+  <div class="form-group">
+    <label for="project-name">Project Name:</label>
+    <input type="text" id="project-name" name="project-name" required [(ngModel)]="projectName">
+  </div>
+  
+  <div class="form-group">
+    <label for="author-name">Author Name:</label>
+    <input type="text" id="author-name" name="author-name" required [(ngModel)]="authorName">
+  </div>
+  
+  <div class="form-group">
+    <label for="date">Date:</label>
+    <input type="date" id="date" name="date" required [(ngModel)]="date">
+  </div>
+  
+  <div class="form-group">
+    <label for="project-type">Project Type:</label>
+    <select id="project-type" name="project-type" required [(ngModel)]="projectType">
+      <option *ngFor="let type of projectTypes" [value]="type">{{ type }}</option>
+
+    </select>
+  </div> 
+  
+  <div class="form-group">
+  <details>
+    <summary>Organization</summary>
+ 
+    <div class="checkbox-container">
+      <input type="checkbox" id="imgFolder" name="imgFolder" required [(ngModel)]="imgFolder"> 
+      <label class="normalLabel" for="imgFolder">Image Folder</label>
+    </div>
+    <br/>
+    </details>
+    </div>
+   
+<!--
+    <div *ngIf="projectType === 'book' || projectType === 'report'; else otherSection">
+      <input type="checkbox" id="outsourceSecs" name="outsourceSecs" required [(ngModel)]="outsourceSecs"> 
+      <div class="checkbox-container">
+      <label class="normalLabel" for="outsourceSecs">Sections in external files</label>
+      </div>
+      <div class="item-input" *ngIf="outsourceSecs">
+        großes Ballet
+      </div>
+      <div class="item-input" *ngIf="!outsourceSecs">
+        Chapters:
+      </div>
+    </div>
+    <ng-template #otherSection>
+      Sections:
+    </ng-template>
+  </details>
+  </div>-->
+  <!--
+  <div class="form-group">
+  <div *ngIf="projectType === 'book' || projectType === 'beamer'">
+    <h4>Kapitel:</h4>
+    <button type="button" (click)="addChapter()">Kapitel hinzufügen</button>
+    <div *ngFor="let chapter of chapters; let i = index;">
+      <label for="chapter{{i}}">Kapitel {{i + 1}}:</label>
+      <input type="text" id="chapter{{i}}" [(ngModel)]="chapter.title">
+
+      <h5>Abschnitte:</h5>
+      <button (click)="addSection(i)">Abschnitt hinzufügen</button>
+      <div *ngFor="let section of chapter.sections; let j = index;">
+        <label for="section{{i}}-{{j}}">Abschnitt {{j + 1}}:</label>
+        <input type="text" id="section{{i}}-{{j}}" [(ngModel)]="section.title">
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="projectType === 'article' || projectType === 'report'">
+    <h4>Abschnitte:</h4>
+    <div *ngFor="let section of sections; let i = index;">
+      <label for="section{{i}}">Abschnitt {{i + 1}}:</label>
+      <input type="text" id="section{{i}}" [(ngModel)]="section.title">
+    </div>
+    <button type="button" (click)="addSection(0)">Abschnitt hinzufügen</button>
+  </div>
+  </div>-->
+
+  <div class="form-group">
+    <label for="platform">Buildscript:</label>
+    <div class="radio-group">
+      <label class="normalLabel">
+        <input type="radio" name="platform" [(ngModel)]="platform" value="not needed">
+        not needed
+      </label>
+      <label class="normalLabel">
+        <input type="radio" name="platform" [(ngModel)]="platform" value="mac_linux_wsl">
+        Mac, Linux, WSL
+      </label>
+      <label class="normalLabel">
+        <input type="radio" name="platform" [(ngModel)]="platform" value="windows">
+        Windows
+      </label>
+      <label class="normalLabel">
+        <input type="radio" name="platform" [(ngModel)]="platform" value="all">
+        booth
+      </label>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="bib">Bib:</label>
+    <div class="radio-group">
+      <label class="normalLabel">
+        <input type="radio" name="bib" [(ngModel)]="bib" value="not needed">
+        not needed
+      </label>
+      <label class="normalLabel">
+        <input type="radio" name="bib" [(ngModel)]="bib" value="inline">
+        inline
+      </label>
+      <label class="normalLabel">
+        <input type="radio" name="bib" [(ngModel)]="bib" value="external">
+        external
+      </label>
+    </div>
+  </div>
+
+  
+  <div class="form-group">
+    <button type="submit">Generate LaTeX Project</button>
+  </div>
+</form>
